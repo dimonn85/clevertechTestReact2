@@ -1,9 +1,10 @@
 import React from 'react'
 
 export const NotesList = (props) => {
-    const { notes = [] } = props
+    const { notes = [], selected, onSelect } = props
     return <div className="list-group">
-        <div data-testid="note-item" className="list-group-item active">Active note example</div>
-        <div data-testid="note-item" className="list-group-item">Inactive note example</div>
+        {notes.map((note) => (
+            <div onClick={() => onSelect(note)} key={note.id} data-testid="note-item" className={`list-group-item ${selected?.id === note.id ? 'active' : ''}`}>{note.title}</div>
+        ))}
     </div>
 }
